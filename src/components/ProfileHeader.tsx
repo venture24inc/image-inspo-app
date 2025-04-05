@@ -10,6 +10,8 @@ interface ProfileHeaderProps {
   followers: number;
   likes: number;
   isCurrentUser?: boolean;
+  onFollowClick?: () => void;
+  isFollowing?: boolean;
 }
 
 const ProfileHeader = ({
@@ -20,6 +22,8 @@ const ProfileHeader = ({
   followers,
   likes,
   isCurrentUser = false,
+  onFollowClick,
+  isFollowing = false,
 }: ProfileHeaderProps) => {
   return (
     <div className="flex flex-col items-center pt-6 pb-8">
@@ -40,8 +44,11 @@ const ProfileHeader = ({
             <Link to="/messages" className="rounded-full bg-gray-800 p-2">
               <MessageCircle className="w-6 h-6 text-white" />
             </Link>
-            <button className="bg-app-gold text-white px-6 py-2 rounded-full font-medium">
-              Follow
+            <button 
+              className={`text-white px-6 py-2 rounded-full font-medium ${isFollowing ? 'bg-gray-800' : 'bg-app-gold'}`}
+              onClick={onFollowClick}
+            >
+              {isFollowing ? 'Following' : 'Follow'}
             </button>
             <button className="rounded-full bg-gray-800 p-2">
               <Share className="w-6 h-6 text-white" />

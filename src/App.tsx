@@ -20,6 +20,7 @@ import CallOutgoing from "./pages/CallOutgoing";
 import CallIncoming from "./pages/CallIncoming";
 import CallActive from "./pages/CallActive";
 import VideoCall from "./pages/VideoCall";
+import Create from "./pages/Create";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
           <Route path="/video/:id" element={<VideoDetails />} />
           <Route path="/videos/:id" element={<VideoView />} />
           <Route path="/post/:id" element={<PostDetail />} />
+          <Route path="/create" element={<Create />} />
           <Route path="/call/outgoing" element={<CallOutgoing />} />
           <Route path="/call/incoming" element={<CallIncoming />} />
           <Route path="/call/active" element={<CallActive />} />

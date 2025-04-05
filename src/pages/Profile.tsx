@@ -6,9 +6,10 @@ import BottomNavigation from "@/components/BottomNavigation";
 import ProfileHeader from "@/components/ProfileHeader";
 import FriendsGrid from "@/components/FriendsGrid";
 import MediaGrid from "@/components/MediaGrid";
+import { Media, Friend, User } from "@/types";
 
 // Mock data
-const mockFriends = [
+const mockFriends: Friend[] = [
   {
     id: "1",
     name: "John Doe",
@@ -36,7 +37,7 @@ const mockFriends = [
   },
 ];
 
-const mockPosts = [
+const mockPosts: Media[] = [
   {
     id: "1",
     type: "image" as const, 
@@ -54,7 +55,46 @@ const mockPosts = [
   },
 ];
 
-const mockUser = {
+const mockVideos: Media[] = [
+  { 
+    id: "1", 
+    type: "video" as const, 
+    url: "/lovable-uploads/efef17b4-0746-42d0-af4a-2cc75dec1ca3.png",
+    thumbnail: "/lovable-uploads/efef17b4-0746-42d0-af4a-2cc75dec1ca3.png"
+  },
+  { 
+    id: "2", 
+    type: "video" as const, 
+    url: "/lovable-uploads/648c889f-cfff-4d1d-a2c6-48547b23ac2b.png",
+    thumbnail: "/lovable-uploads/648c889f-cfff-4d1d-a2c6-48547b23ac2b.png"
+  },
+  { 
+    id: "3", 
+    type: "video" as const, 
+    url: "/lovable-uploads/2b3118f5-6c06-4122-972d-e17cdba8f931.png",
+    thumbnail: "/lovable-uploads/2b3118f5-6c06-4122-972d-e17cdba8f931.png"
+  },
+];
+
+const mockPhotos: Media[] = [
+  {
+    id: "1",
+    type: "image" as const, 
+    url: "/lovable-uploads/922b807e-0475-4957-bdb5-3fdffba7c4a1.png"
+  },
+  {
+    id: "2",
+    type: "image" as const, 
+    url: "/lovable-uploads/32c8d1cc-178d-45c4-b0cf-3894be6337a6.png"
+  },
+  {
+    id: "3",
+    type: "image" as const, 
+    url: "/lovable-uploads/3ccb8a99-323d-4d77-8e41-1a670583c473.png"
+  },
+];
+
+const mockUser: User = {
   id: "jessa",
   name: "Jessa Doe",
   occupation: "Hair Stylist",
@@ -69,6 +109,23 @@ const Profile = () => {
   const isCurrentUser = !id || id === "jessa";
   
   const [activeTab, setActiveTab] = useState("posts");
+  const [isFollowing, setIsFollowing] = useState(false);
+  
+  const getMediaContent = () => {
+    switch (activeTab) {
+      case "videos":
+        return <MediaGrid media={mockVideos} />;
+      case "photos":
+        return <MediaGrid media={mockPhotos} />;
+      case "posts":
+      default:
+        return <MediaGrid media={mockPosts} />;
+    }
+  };
+  
+  const handleFollow = () => {
+    setIsFollowing(!isFollowing);
+  };
   
   return (
     <div className="pb-16 min-h-screen bg-app-dark">
@@ -86,6 +143,8 @@ const Profile = () => {
         followers={mockUser.followers}
         likes={mockUser.likes}
         isCurrentUser={!isCurrentUser}
+        onFollowClick={handleFollow}
+        isFollowing={isFollowing}
       />
       
       <FriendsGrid 
@@ -121,7 +180,7 @@ const Profile = () => {
         </div>
       </div>
       
-      <MediaGrid media={mockPosts} />
+      {getMediaContent()}
       
       <BottomNavigation />
     </div>

@@ -1,10 +1,13 @@
 
+import { useState } from "react";
 import Header from "@/components/Header";
 import BottomNavigation from "@/components/BottomNavigation";
 import FriendListItem from "@/components/FriendListItem";
+import { Friend } from "@/types";
+import { Search } from "lucide-react";
 
 // Mock data
-const mockFriends = [
+const mockFriends: Friend[] = [
   {
     id: "1",
     name: "Danica Doe",
@@ -50,14 +53,40 @@ const mockFriends = [
 ];
 
 const Friends = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [friends, setFriends] = useState<Friend[]>(mockFriends);
+  
+  const filteredFriends = friends.filter(friend => 
+    friend.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  
   return (
     <div className="min-h-screen pb-16 bg-app-dark">
-      <Header title="Your Friends" />
+      <Header title="Your Friends" showBackButton={true} />
+      
+      <div className="p-4">
+        <div className="flex items-center bg-gray-800 rounded-full px-4 py-2 mb-4">
+          <Search className="w-5 h-5 text-gray-400 mr-2" />
+          <input 
+            type="text" 
+            placeholder="Search friends..." 
+            className="bg-transparent text-white w-full outline-none"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+        </div>
+      </div>
       
       <div className="pb-4">
-        {mockFriends.map((friend) => (
+        {filteredFriends.map((friend) => (
           <FriendListItem key={friend.id} {...friend} />
         ))}
+        
+        {filteredFriends.length === 0 && (
+          <div className="text-center py-8 text-gray-400">
+            No friends match your search
+          </div>
+        )}
       </div>
       
       <BottomNavigation />

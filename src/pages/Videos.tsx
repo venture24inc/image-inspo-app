@@ -4,9 +4,11 @@ import Header from "@/components/Header";
 import BottomNavigation from "@/components/BottomNavigation";
 import MediaGrid from "@/components/MediaGrid";
 import { Search, Plus } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Media } from "@/types";
 
 // Mock data
-const mockVideos = [
+const mockVideos: Media[] = [
   { 
     id: "1", 
     type: "video" as const, 
@@ -82,6 +84,8 @@ const mockVideos = [
 ];
 
 const Videos = () => {
+  const [searchQuery, setSearchQuery] = useState("");
+  
   return (
     <div className="pb-16">
       <Header 
@@ -91,9 +95,9 @@ const Videos = () => {
       />
       
       <div className="flex justify-end p-4">
-        <button className="bg-app-gold p-2 rounded-full">
+        <Link to="/create" className="bg-app-gold p-2 rounded-full">
           <Plus className="text-white w-5 h-5" />
-        </button>
+        </Link>
       </div>
       
       <div className="py-2">
