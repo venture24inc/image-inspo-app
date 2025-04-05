@@ -6,7 +6,7 @@ import { MoreHorizontal } from "lucide-react";
 interface FriendListItemProps {
   id: string;
   name: string;
-  occupation: string;
+  occupation?: string; // Changed from required to optional
   image: string;
 }
 
@@ -30,7 +30,7 @@ const FriendListItem = ({
         </div>
         <div>
           <h3 className="text-white font-medium">{name}</h3>
-          <p className="text-gray-400 text-sm">{occupation}</p>
+          <p className="text-gray-400 text-sm">{occupation || 'User'}</p>
         </div>
       </Link>
       
