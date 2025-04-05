@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -33,60 +34,6 @@
     --ring: 222.2 84% 4.9%;
 
     --radius: 0.5rem;
-
-    --sidebar-background: 0 0% 98%;
-
-    --sidebar-foreground: 240 5.3% 26.1%;
-
-    --sidebar-primary: 240 5.9% 10%;
-
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
   }
 }
 
@@ -96,6 +43,48 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-app-dark text-foreground;
+  }
+
+  html, body {
+    @apply h-full overflow-x-hidden touch-manipulation;
+  }
+  
+  #root {
+    @apply h-full max-w-md mx-auto relative;
+  }
+}
+
+@layer components {
+  .profile-picture {
+    @apply rounded-full object-cover;
+  }
+  
+  .nav-icon {
+    @apply text-white w-6 h-6;
+  }
+  
+  .bottom-nav-item {
+    @apply flex-1 flex flex-col items-center justify-center;
+  }
+  
+  .message-bubble {
+    @apply rounded-2xl p-3 text-sm max-w-[80%];
+  }
+  
+  .message-left {
+    @apply message-bubble bg-app-dark-lighter text-white self-start;
+  }
+  
+  .message-right {
+    @apply message-bubble bg-app-gold text-white self-end;
+  }
+  
+  .call-button {
+    @apply rounded-full w-14 h-14 flex items-center justify-center text-white;
+  }
+  
+  .action-button {
+    @apply flex items-center gap-1 text-sm text-gray-400;
   }
 }
