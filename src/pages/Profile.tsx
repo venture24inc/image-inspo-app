@@ -39,17 +39,17 @@ const mockFriends = [
 const mockPosts = [
   {
     id: "1",
-    type: "image", 
+    type: "image" as const, 
     url: "/lovable-uploads/3ccb8a99-323d-4d77-8e41-1a670583c473.png"
   },
   {
     id: "2",
-    type: "image", 
+    type: "image" as const, 
     url: "/lovable-uploads/922b807e-0475-4957-bdb5-3fdffba7c4a1.png"
   },
   {
     id: "3",
-    type: "image", 
+    type: "image" as const, 
     url: "/lovable-uploads/32c8d1cc-178d-45c4-b0cf-3894be6337a6.png"
   },
 ];
